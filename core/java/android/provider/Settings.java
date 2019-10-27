@@ -4532,6 +4532,12 @@ public final class Settings {
         public static final String SCREENRECORD_SHOW_TAPS = "screenrecord_show_taps";
 
         /**
+         * Whether the user has already accepted MediaProjection permission for the built-in screenrecorder
+         * @hide
+         */
+        public static final String MEDIAPROJECTION_SYSUI_OK = "mediaprojection_sysui_ok";
+
+        /**
          * Screenrecord: show stop dot
          * @hide
          */
