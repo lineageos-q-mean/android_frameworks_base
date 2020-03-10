@@ -22,4 +22,9 @@
     <string name="applock_locked">&#160;is Locked.</string>
     <string name="applock_fingerprint">&#160;or your fingerprint to unlock.</string>
     <string name="applock_locked_notification">App is locked</string>
+
+    <!-- FPS Info tile -->
+    <string name="quick_settings_fpsinfo_label">FPS Info</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">FPS Info off</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">FPS Info on</string>
 </resources>

@@ -46,4 +46,6 @@
     <!-- Allow devices to enforce the H265 encoder for screen recordings -->
     <bool name="config_useNewScreenRecEncoder">true</bool>
 
+    <!-- FPSInfoService FPS node file path -->
+    <string name="config_fpsInfoSysNode" translatable="false"></string>
 </resources>
