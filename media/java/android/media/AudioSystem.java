@@ -1091,6 +1091,21 @@ public class AudioSystem
      */
     public static native int setAudioHalPids(int[] pids);
 
+    /**
+     * @hide
+     */
+    public static native int setAppVolume(@NonNull String packageName, float volume);
+
+    /**
+     * @hide
+     */
+    public static native int setAppMute(@NonNull String packageName, boolean mute);
+
+    /**
+     * @hide
+     */
+    public static native int listAppTrackDatas(ArrayList<AppTrackData> volumes);
+
     // Items shared with audio service
 
     /**
