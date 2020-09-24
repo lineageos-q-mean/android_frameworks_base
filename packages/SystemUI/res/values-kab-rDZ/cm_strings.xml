@@ -65,4 +65,8 @@
     <string name="status_bar_camera">Takamiṛat</string>
     <string name="status_bar_location">Adig</string>
     <string name="status_bar_microphone">Asawaḍ</string>
+    <!-- App lock -->
+    <string name="applock_locked">&#160;ukax Locked satawa.</string>
+    <string name="applock_fingerprint">&#160;jan ukax ampar luk’anampiw jist’arañama.</string>
+    <string name="applock_locked_notification">App ukax llawintatänwa</string>
 </resources>
