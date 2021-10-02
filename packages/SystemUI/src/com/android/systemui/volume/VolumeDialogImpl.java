@@ -655,7 +655,7 @@ public class VolumeDialogImpl implements VolumeDialog,
             final VolumeRow row = mAppRows.get(i);
             removeAppRow(row);
         }
-        if (!mShowAppVolume) return;
+        if (!mShowAppVolume || !expand) return;
         List<AppTrackData> trackDatas = mController.getAudioManager().listAppTrackDatas();
         for (AppTrackData data : trackDatas) {
             if (data.isActive()) {
