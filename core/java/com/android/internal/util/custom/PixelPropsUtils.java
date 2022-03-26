@@ -105,12 +105,14 @@ public class PixelPropsUtils {
     // Packages to Spoof as Mi 11 Ultra
     private static final Map<String, Object> propsToChangeMI11;
     private static final String[] packagesToChangeMI11 = {
+        "com.mobile.legends",
         "com.pubg.imobile",
         "com.pubg.krmobile",
         "com.pubg.newstate",
         "com.rekoo.pubgm",
         "com.tencent.ig",
         "com.tencent.tmgp.pubgmhd",
+        "com.tencent.tmgp.sgame",
         "com.vng.pubgmobile"
     };
 
