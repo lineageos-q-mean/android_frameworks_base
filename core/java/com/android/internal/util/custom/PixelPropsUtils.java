@@ -41,88 +41,92 @@ public class PixelPropsUtils {
     private static final Map<String, ArrayList<String>> propsToKeep;
 
     private static final String[] packagesToChangePixel7Pro = {
-            "com.google.android.apps.wallpaper",
-            "com.google.android.apps.privacy.wildlife",
-            "com.google.android.inputmethod.latin"
+        "com.google.android.apps.wallpaper",
+        "com.google.android.apps.privacy.wildlife",
+        "com.google.android.inputmethod.latin"
     };
 
     private static final String[] packagesToChangePixelXL = {
-            "com.google.android.apps.photos"
+        "com.google.android.apps.photos"
     };
 
     private static final String[] extraPackagesToChange = {
-            "com.android.chrome",
-            "com.android.vending",
-            "com.breel.wallpapers20",
-     	    "com.google.android.apps.wallpaper",
-            "com.google.android.gm",
-            "com.nothing.smartcenter"
+        "com.android.chrome",
+        "com.android.vending",
+        "com.breel.wallpapers20",
+        "com.google.android.apps.wallpaper",
+        "com.google.android.gm",
+        "com.nothing.smartcenter"
     };
 
     private static final String[] customGoogleCameraPackages = {
-            "com.google.android.MTCL83",
-            "com.google.android.UltraCVM",
-            "com.google.android.apps.cameralite"
+        "com.google.android.MTCL83",
+        "com.google.android.UltraCVM",
+        "com.google.android.apps.cameralite"
     };
 
     private static final String[] packagesToKeep = {
-            "com.google.android.dialer",
-            "com.google.android.euicc",
-            "com.google.ar.core",
-            "com.google.android.youtube",
-            "com.google.android.apps.youtube.kids",
-            "com.google.android.apps.youtube.music",
-            "com.google.android.apps.recorder",
-            "com.google.android.apps.wearables.maestro.companion"
+        "com.google.android.dialer",
+        "com.google.android.euicc",
+        "com.google.ar.core",
+        "com.google.android.youtube",
+        "com.google.android.apps.youtube.kids",
+        "com.google.android.apps.youtube.music",
+        "com.google.android.apps.recorder",
+        "com.google.android.apps.wearables.maestro.companion"
     };
 
+    // Packages to Spoof as Asus ROG Phone 1
     private static final Map<String, Object> propsToChangeROG1;
     private static final String[] packagesToChangeROG1 = {
-            "com.dts.freefireth",
-            "com.dts.freefiremax",
-            "com.madfingergames.legends"
+        "com.dts.freefireth",
+        "com.dts.freefiremax",
+        "com.madfingergames.legends"
     };
 
+    // Packages to Spoof as Xperia 5
     private static final Map<String, Object> propsToChangeXP5;
     private static final String[] packagesToChangeXP5 = {
-            "com.activision.callofduty.shooter",
-            "com.tencent.tmgp.kr.codm",
-            "com.garena.game.codm",
-            "com.vng.codmvn"
+        "com.activision.callofduty.shooter",
+        "com.tencent.tmgp.kr.codm",
+        "com.garena.game.codm",
+        "com.vng.codmvn"
     };
 
+    // Packages to Spoof as OnePlus 8 Pro
     private static final Map<String, Object> propsToChangeOP8P;
     private static final String[] packagesToChangeOP8P = {
-            "com.riotgames.league.wildrift",
-            "com.riotgames.league.wildrifttw",
-            "com.riotgames.league.wildriftvn",
-            "com.netease.lztgglobal"
+        "com.riotgames.league.wildrift",
+        "com.riotgames.league.wildrifttw",
+        "com.riotgames.league.wildriftvn",
+        "com.netease.lztgglobal"
     };
 
     // Packages to Spoof as Mi 11 Ultra
     private static final Map<String, Object> propsToChangeMI11;
     private static final String[] packagesToChangeMI11 = {
-            "com.pubg.imobile",
-            "com.pubg.krmobile",
-            "com.pubg.newstate",
-            "com.rekoo.pubgm",
-            "com.tencent.ig",
-            "com.tencent.tmgp.pubgmhd",
-            "com.vng.pubgmobile"
+        "com.pubg.imobile",
+        "com.pubg.krmobile",
+        "com.pubg.newstate",
+        "com.rekoo.pubgm",
+        "com.tencent.ig",
+        "com.tencent.tmgp.pubgmhd",
+        "com.vng.pubgmobile"
+    };
 
     // Codenames for currently supported Pixels by Google
     private static final String[] pixelCodenames = {
-            "cheetah",
-            "panther",
-            "bluejay",
-            "oriole",
-            "raven",
-            "barbet",
-            "redfin",
-            "bramble",
-            "sunfish",
-            "coral",
-            "flame"
+        "cheetah",
+        "panther",
+        "bluejay",
+        "oriole",
+        "raven",
+        "barbet",
+        "redfin",
+        "bramble",
+        "sunfish",
+        "coral",
+        "flame"
     };
 
     private static volatile boolean sIsGms = false;
