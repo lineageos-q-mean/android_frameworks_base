@@ -56,7 +56,8 @@ public class PixelPropsUtils {
             "com.android.vending",
             "com.breel.wallpapers20",
      	    "com.google.android.apps.wallpaper",
-            "com.google.android.gm"
+            "com.google.android.gm",
+            "com.nothing.smartcenter"
     };
 
     private static final String[] packagesToKeep = {
