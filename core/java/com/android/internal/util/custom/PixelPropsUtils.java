@@ -76,46 +76,6 @@ public class PixelPropsUtils {
         "com.google.android.apps.wearables.maestro.companion"
     };
 
-    // Packages to Spoof as Asus ROG Phone 1
-    private static final Map<String, Object> propsToChangeROG1;
-    private static final String[] packagesToChangeROG1 = {
-        "com.dts.freefireth",
-        "com.dts.freefiremax",
-        "com.madfingergames.legends"
-    };
-
-    // Packages to Spoof as Xperia 5
-    private static final Map<String, Object> propsToChangeXP5;
-    private static final String[] packagesToChangeXP5 = {
-        "com.activision.callofduty.shooter",
-        "com.tencent.tmgp.kr.codm",
-        "com.garena.game.codm",
-        "com.vng.codmvn"
-    };
-
-    // Packages to Spoof as OnePlus 8 Pro
-    private static final Map<String, Object> propsToChangeOP8P;
-    private static final String[] packagesToChangeOP8P = {
-        "com.riotgames.league.wildrift",
-        "com.riotgames.league.wildrifttw",
-        "com.riotgames.league.wildriftvn",
-        "com.netease.lztgglobal"
-    };
-
-    // Packages to Spoof as Mi 11 Ultra
-    private static final Map<String, Object> propsToChangeMI11;
-    private static final String[] packagesToChangeMI11 = {
-        "com.mobile.legends",
-        "com.pubg.imobile",
-        "com.pubg.krmobile",
-        "com.pubg.newstate",
-        "com.rekoo.pubgm",
-        "com.tencent.ig",
-        "com.tencent.tmgp.pubgmhd",
-        "com.tencent.tmgp.sgame",
-        "com.vng.pubgmobile"
-    };
-
     // Codenames for currently supported Pixels by Google
     private static final String[] pixelCodenames = {
         "cheetah",
@@ -161,20 +121,6 @@ public class PixelPropsUtils {
         propsToChangePixelXL.put("PRODUCT", "marlin");
         propsToChangePixelXL.put("MODEL", "Pixel XL");
         propsToChangePixelXL.put("FINGERPRINT", "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys");
-        propsToChangeROG1 = new HashMap<>();
-        propsToChangeROG1.put("MODEL", "ASUS_Z01QD");
-        propsToChangeROG1.put("MANUFACTURER", "asus");
-        propsToChangeXP5 = new HashMap<>();
-        propsToChangeXP5.put("MODEL", "SO-52A");
-        propsToChangeOP8P = new HashMap<>();
-        propsToChangeOP8P.put("MODEL", "IN2020");
-        propsToChangeOP8P.put("MANUFACTURER", "OnePlus");
-        propsToChangeMI11 = new HashMap<>();
-        propsToChangeMI11.put("BRAND", "Xiaomi");
-        propsToChangeMI11.put("MANUFACTURER", "Xiaomi");
-        propsToChangeMI11.put("DEVICE", "star");
-        propsToChangeMI11.put("PRODUCT", "star");
-        propsToChangeMI11.put("MODEL", "M2102K1G");
     }
 
     private static boolean isGoogleCameraPackage(String packageName){
@@ -241,36 +187,6 @@ public class PixelPropsUtils {
             // Set proper indexing fingerprint
             if (packageName.equals("com.google.android.settings.intelligence")) {
                 setPropValue("FINGERPRINT", Build.VERSION.INCREMENTAL);
-            }
-        } else {
-            if (Arrays.asList(packagesToChangeROG1).contains(packageName)) {
-                if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
-                for (Map.Entry<String, Object> prop : propsToChangeROG1.entrySet()) {
-                    String key = prop.getKey();
-                    Object value = prop.getValue();
-                    setPropValue(key, value);
-                }
-            } else if (Arrays.asList(packagesToChangeXP5).contains(packageName)) {
-                if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
-                for (Map.Entry<String, Object> prop : propsToChangeXP5.entrySet()) {
-                    String key = prop.getKey();
-                    Object value = prop.getValue();
-                    setPropValue(key, value);
-                }
-            } else if (Arrays.asList(packagesToChangeOP8P).contains(packageName)) {
-                if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
-                for (Map.Entry<String, Object> prop : propsToChangeOP8P.entrySet()) {
-                    String key = prop.getKey();
-                    Object value = prop.getValue();
-                    setPropValue(key, value);
-                }
-            } else if (Arrays.asList(packagesToChangeMI11).contains(packageName)) {
-                if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
-                for (Map.Entry<String, Object> prop : propsToChangeMI11.entrySet()) {
-                    String key = prop.getKey();
-                    Object value = prop.getValue();
-                    setPropValue(key, value);
-                }
             }
         }
     }
