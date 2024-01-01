@@ -244,11 +244,10 @@ public class PixelPropsUtils {
         setPropValue("PRODUCT", "sailfish");
         setPropValue("MODEL", "Pixel");
         setPropValue("DEVICE", "sailfish");
-        setPropValue("FINGERPRINT", "google/sailfish/sailfish:8.1.0/OPM2.171019.029/4657601:user/release-keys");
+        setPropValue("FINGERPRINT", "google/sailfish/sailfish:7.1.2/NHG47O/4051500:user/release-keys");
         setPropValue("TYPE", "user");
         setPropValue("TAGS", "release-keys");
-        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.O_MR1);
-        setVersionFieldString("SECURITY_PATCH", "2018-04-05");
+        setVersionFieldString("SECURITY_PATCH", "2017-07-05");
     }
 
     private static boolean isCallerSafetyNet() {
