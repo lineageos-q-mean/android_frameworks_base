@@ -177,10 +177,7 @@ public class PixelPropsUtils {
                 final String processName = Application.getProcessName();
                 if (processName.equals("com.google.android.gms.unstable")) {
                     sIsGms = true;
-                    setPropValue("FINGERPRINT", "google/marlin/marlin:7.1.2/NJH47F/4146041:user/release-keys");
-                    setPropValue("PRODUCT", "marlin");
-                    setPropValue("DEVICE", "marlin");
-                    setPropValue("MODEL", "Pixel XL");
+                    spoofBuildGms();
                 }
                 return;
             }
@@ -201,6 +198,57 @@ public class PixelPropsUtils {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             Log.e(TAG, "Failed to set prop " + key, e);
         }
+    }
+
+    private static void setBuildField(String key, String value) {
+        try {
+            // Unlock
+            Field field = Build.class.getDeclaredField(key);
+            field.setAccessible(true);
+            // Edit
+            field.set(null, value);
+            // Lock
+            field.setAccessible(false);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            Log.e(TAG, "Failed to spoof Build." + key, e);
+        }
+    }
+
+    private static void setVersionField(String key, Integer value) {
+        try {
+            // Unlock
+            Field field = Build.VERSION.class.getDeclaredField(key);
+            field.setAccessible(true);
+            // Edit
+            field.set(null, value);
+            // Lock
+            field.setAccessible(false);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            Log.e(TAG, "Failed to spoof Build." + key, e);
+        }
+    }
+
+    private static void setVersionFieldString(String key, String value) {
+        try {
+            Field field = Build.VERSION.class.getDeclaredField(key);
+            field.setAccessible(true);
+            field.set(null, value);
+            field.setAccessible(false);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            Log.e(TAG, "Failed to spoof Build." + key, e);
+        }
+    }
+
+    private static void spoofBuildGms() {
+        // // Alter build parameters to pixel for avoiding hardware attestation enforcement
+        setPropValue("PRODUCT", "sailfish");
+        setPropValue("MODEL", "Pixel");
+        setPropValue("DEVICE", "sailfish");
+        setPropValue("FINGERPRINT", "google/sailfish/sailfish:8.1.0/OPM2.171019.029/4657601:user/release-keys");
+        setPropValue("TYPE", "user");
+        setPropValue("TAGS", "release-keys");
+        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.O_MR1);
+        setVersionFieldString("SECURITY_PATCH", "2018-04-05");
     }
 
     private static boolean isCallerSafetyNet() {
