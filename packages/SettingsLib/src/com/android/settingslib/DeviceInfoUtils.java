@@ -24,6 +24,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
+import android.os.SystemProperties;
 import android.system.Os;
 import android.system.StructUtsname;
 import android.telephony.PhoneNumberUtils;
@@ -206,4 +207,20 @@ public class DeviceInfoUtils {
         return sb.toString();
     }
 
+   public static String getCustomPatch() {
+        String customPatch = SystemProperties.get("ro.lineage.custom_version");
+        if (!"".equals(customPatch)) {
+            try {
+                SimpleDateFormat template = new SimpleDateFormat("yyyy-MM-dd");
+                Date patchDate = template.parse(customPatch);
+                String format = DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMyyyy");
+                customPatch = DateFormat.format(format, patchDate).toString();
+            } catch (ParseException e) {
+                // broken parse; fall through and use the raw string
+            }
+            return customPatch;
+        } else {
+            return null;
+        }
+    }
 }
