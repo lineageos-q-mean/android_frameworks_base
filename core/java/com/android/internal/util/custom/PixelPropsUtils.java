@@ -241,13 +241,18 @@ public class PixelPropsUtils {
 
     private static void spoofBuildGms() {
         // // Alter build parameters to pixel for avoiding hardware attestation enforcement
-        setPropValue("PRODUCT", "sailfish");
-        setPropValue("MODEL", "Pixel");
+        setPropValue("BRAND", "google");
+        setPropValue("MANUFACTURER", "Google");
         setPropValue("DEVICE", "sailfish");
-        setPropValue("FINGERPRINT", "google/sailfish/sailfish:7.1.2/NHG47O/4051500:user/release-keys");
+        setPropValue("ID", "OPM1.171019.011");
+	setPropValue("INCREMENTAL", "4448085");
+        setPropValue("FINGERPRINT", "google/sailfish/sailfish:8.1.0/OPM1.171019.011/4448085:user/release-keys");
+        setPropValue("MODEL", "Pixel");
+        setPropValue("PRODUCT", "sailfish");
         setPropValue("TYPE", "user");
         setPropValue("TAGS", "release-keys");
-        setVersionFieldString("SECURITY_PATCH", "2017-07-05");
+        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.O_MR1);
+        setVersionFieldString("SECURITY_PATCH", "2017-12-05");
     }
 
     private static boolean isCallerSafetyNet() {
