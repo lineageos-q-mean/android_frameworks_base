@@ -228,64 +228,23 @@ public class PixelPropsUtils {
     }
 
     private static void setPropValue(String key, Object value) {
-        try {
-            if (DEBUG) Log.d(TAG, "Defining prop " + key + " to " + value.toString());
-            Field field = Build.class.getDeclaredField(key);
-            field.setAccessible(true);
-            field.set(null, value);
-            field.setAccessible(false);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            Log.e(TAG, "Failed to set prop " + key, e);
-        }
+        setPropValue(key, value.toString());
     }
 
-    private static void setBuildField(String key, String value) {
-        try {
-            // Unlock
-            Field field = Build.class.getDeclaredField(key);
-            field.setAccessible(true);
-            // Edit
-            field.set(null, value);
-            // Lock
-            field.setAccessible(false);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            Log.e(TAG, "Failed to spoof Build." + key, e);
-        }
-    }
-
-    private static void setVersionField(String key, Integer value) {
-        try {
-            // Unlock
-            Field field = Build.VERSION.class.getDeclaredField(key);
-            field.setAccessible(true);
-            // Edit
-            field.set(null, value);
-            // Lock
-            field.setAccessible(false);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            Log.e(TAG, "Failed to spoof Build." + key, e);
-        }
-    }
-
-    private static void setVersionFieldString(String key, String value) {
-        try {
-            Field field = Build.VERSION.class.getDeclaredField(key);
-            field.setAccessible(true);
-            field.set(null, value);
-            field.setAccessible(false);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            Log.e(TAG, "Failed to spoof Build." + key, e);
-        }
-    }
-
-    private static void setVersionFieldInt(String key, int value) {
+    private static void setPropValue(String key, String value) {
         try {
             if (DEBUG) Log.d(TAG, "Defining prop " + key + " to " + value);
-            Field field = Build.VERSION.class.getDeclaredField(key);
+            Class clazz = Build.class;
+            if (key.startsWith("VERSION.")) {
+                clazz = Build.VERSION.class;
+                key = key.substring(8);
+            }
+            Field field = clazz.getDeclaredField(key);
             field.setAccessible(true);
-            field.set(null, value);
+            // Cast the value to int if it's an integer field, otherwise string.
+            field.set(null, field.getType().equals(Integer.TYPE) ? Integer.parseInt(value) : value);
             field.setAccessible(false);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (Exception e) {
             Log.e(TAG, "Failed to set prop " + key, e);
         }
     }
@@ -293,18 +252,18 @@ public class PixelPropsUtils {
     private static void spoofBuildGms() {
         // Alter build parameters to pixel for avoiding hardware attestation enforcement
         setPropValue("MANUFACTURER", "Google");
-        setPropValue("MODEL", "Pixel 9 Pro");
-        setPropValue("FINGERPRINT", "google/caiman/caiman:14/AD1A.240530.047.U1/12150698:user/release-keys");
+        setPropValue("MODEL", "Pixel 6");
+        setPropValue("FINGERPRINT", "google/oriole_beta/oriole:15/AP41.240823.009/12329489:user/release-keys");
         setPropValue("BRAND", "google");
-        setPropValue("PRODUCT", "caiman");
-        setPropValue("DEVICE", "caiman");
-        setVersionFieldString("RELEASE", "14");
-        setPropValue("ID", "AD1A.240530.047.U1");
-        setVersionFieldString("INCREMENTAL", "12150698");
+        setPropValue("PRODUCT", "oriole_beta");
+        setPropValue("DEVICE", "oriole");
+        setPropValue("VERSION.RELEASE", "15");
+        setPropValue("ID", "AP41.240823.009");
+        setPropValue("VERSION.INCREMENTAL", "12329489");
         setPropValue("TYPE", "user");
         setPropValue("TAGS", "release-keys");
-        setVersionFieldString("SECURITY_PATCH", "2024-08-05");
-        setVersionFieldInt("DEVICE_INITIAL_SDK_INT", 29);
+        setPropValue("VERSION.SECURITY_PATCH", "2024-09-05");
+        setPropValue("VERSION.DEVICE_INITIAL_SDK_INT", "31");
 }
     private static boolean isCallerSafetyNet() {
         return sIsGms && Arrays.stream(Thread.currentThread().getStackTrace())
