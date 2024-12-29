@@ -27,7 +27,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PixelPropsUtils {
+/**
+ * @hide
+ */
+public final class PixelPropsUtils {
 
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
     private static final String DEVICE = "ro.lineage.device";
@@ -142,8 +145,8 @@ public class PixelPropsUtils {
         propsToChangePixel9Pro.put("PRODUCT", "caiman");
         propsToChangePixel9Pro.put("HARDWARE", "caiman");
         propsToChangePixel9Pro.put("MODEL", "Pixel 9 Pro");
-        propsToChangePixel9Pro.put("ID", "AD1A.240530.047.U1");
-        propsToChangePixel9Pro.put("FINGERPRINT", "google/caiman/caiman:14/AD1A.240530.047.U1/12150698:user/release-keys");
+        propsToChangePixel9Pro.put("ID", "AP3A.241105.008");
+        propsToChangePixel9Pro.put("FINGERPRINT", "google/caiman/caiman:15/AP3A.241105.008/12485168:user/release-keys");
         propsToChangePixel5a = new HashMap<>();
         propsToChangePixel5a.put("BRAND", "google");
         propsToChangePixel5a.put("MANUFACTURER", "Google");
@@ -151,8 +154,8 @@ public class PixelPropsUtils {
         propsToChangePixel5a.put("PRODUCT", "barbet");
         propsToChangePixel5a.put("HARDWARE", "barbet");
         propsToChangePixel5a.put("MODEL", "Pixel 5a");
-        propsToChangePixel5a.put("ID", "AP2A.240805.005");
-        propsToChangePixel5a.put("FINGERPRINT", "google/barbet/barbet:14/AP2A.240805.005/12025142:user/release-keys");
+        propsToChangePixel5a.put("ID", "AP2A.240805.005.S4");
+        propsToChangePixel5a.put("FINGERPRINT", "google/barbet/barbet:14/AP2A.240805.005.S4/12281092:user/release-keys");
         propsToChangePixelXL = new HashMap<>();
         propsToChangePixelXL.put("BRAND", "google");
         propsToChangePixelXL.put("MANUFACTURER", "Google");
@@ -252,17 +255,17 @@ public class PixelPropsUtils {
     private static void spoofBuildGms() {
         // Alter build parameters to pixel for avoiding hardware attestation enforcement
         setPropValue("MANUFACTURER", "Google");
-        setPropValue("MODEL", "Pixel 6");
-        setPropValue("FINGERPRINT", "google/oriole_beta/oriole:15/BP11.241025.006/12620009:user/release-keys");
+        setPropValue("MODEL", "Pixel 7a");
+        setPropValue("FINGERPRINT", "google/lynx_beta/lynx:15/BP11.241121.010/12780007:user/release-keys");
         setPropValue("BRAND", "google");
-        setPropValue("PRODUCT", "oriole_beta");
-        setPropValue("DEVICE", "oriole");
+        setPropValue("PRODUCT", "lynx_beta");
+        setPropValue("DEVICE", "lynx");
         setPropValue("VERSION.RELEASE", "15");
-        setPropValue("ID", "BP11.241025.006");
-        setPropValue("VERSION.INCREMENTAL", "12620009");
+        setPropValue("ID", "BP11.241121.010");
+        setPropValue("VERSION.INCREMENTAL", "12780007");
         setPropValue("TYPE", "user");
         setPropValue("TAGS", "release-keys");
-        setPropValue("VERSION.SECURITY_PATCH", "2024-11-05");
+        setPropValue("VERSION.SECURITY_PATCH", "2024-12-05");
         setPropValue("VERSION.DEVICE_INITIAL_SDK_INT", "21");
 }
     private static boolean isCallerSafetyNet() {
