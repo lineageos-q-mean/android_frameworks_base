@@ -26,6 +26,7 @@ import android.app.ActivityTaskManager;
 import android.app.ActivityThread;
 import android.app.AppGlobals;
 import android.app.admin.DevicePolicyManager;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.IPackageManager;
@@ -192,29 +193,43 @@ public class IntentForwarderActivity extends Activity  {
      * forwarding if it can be forwarded, {@code null} otherwise.
      */
     Intent canForward(Intent incomingIntent, int targetUserId)  {
+        int sourceUserId = getUserId();
+        IPackageManager packageManager = mInjector.getIPackageManager();
+        ContentResolver contentResolver = getContentResolver();
         Intent forwardIntent = new Intent(incomingIntent);
         forwardIntent.addFlags(
                 Intent.FLAG_ACTIVITY_FORWARD_RESULT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         sanitizeIntent(forwardIntent);
 
-        Intent intentToCheck = forwardIntent;
-        if (Intent.ACTION_CHOOSER.equals(forwardIntent.getAction())) {
+        if (!canForwardInner(forwardIntent, sourceUserId, targetUserId, packageManager,
+                contentResolver)) {
             return null;
         }
         if (forwardIntent.getSelector() != null) {
-            intentToCheck = forwardIntent.getSelector();
+            sanitizeIntent(forwardIntent.getSelector());
+            if (!canForwardInner(forwardIntent.getSelector(), sourceUserId, targetUserId,
+                    packageManager, contentResolver)) {
+                return null;
+            }
         }
-        String resolvedType = intentToCheck.resolveTypeIfNeeded(getContentResolver());
-        sanitizeIntent(intentToCheck);
+        return forwardIntent;
+    }
+
+    private static boolean canForwardInner(Intent intent, int sourceUserId, int targetUserId,
+            IPackageManager packageManager, ContentResolver contentResolver) {
+        if (Intent.ACTION_CHOOSER.equals(intent.getAction())) {
+            return false;
+        }
+        String resolvedType = intent.resolveTypeIfNeeded(contentResolver);
         try {
-            if (mInjector.getIPackageManager().
-                    canForwardTo(intentToCheck, resolvedType, getUserId(), targetUserId)) {
-                return forwardIntent;
+            if (packageManager.canForwardTo(
+                    intent, resolvedType, sourceUserId, targetUserId)) {
+                return true;
             }
         } catch (RemoteException e) {
             Slog.e(TAG, "PackageManagerService is dead?");
         }
-        return null;
+        return false;
     }
 
     /**
