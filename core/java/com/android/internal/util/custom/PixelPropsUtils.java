@@ -145,8 +145,8 @@ public final class PixelPropsUtils {
         propsToChangePixel9Pro.put("PRODUCT", "caiman");
         propsToChangePixel9Pro.put("HARDWARE", "caiman");
         propsToChangePixel9Pro.put("MODEL", "Pixel 9 Pro");
-        propsToChangePixel9Pro.put("ID", "AP3A.241105.008");
-        propsToChangePixel9Pro.put("FINGERPRINT", "google/caiman/caiman:15/AP3A.241105.008/12485168:user/release-keys");
+        propsToChangePixel9Pro.put("ID", "BP1A.250405.007");
+        propsToChangePixel9Pro.put("FINGERPRINT", "google/caiman/caiman:15/BP1A.250405.007/13240079:user/release-keys");
         propsToChangePixel5a = new HashMap<>();
         propsToChangePixel5a.put("BRAND", "google");
         propsToChangePixel5a.put("MANUFACTURER", "Google");
@@ -255,17 +255,17 @@ public final class PixelPropsUtils {
     private static void spoofBuildGms() {
         // Alter build parameters to pixel for avoiding hardware attestation enforcement
         setPropValue("MANUFACTURER", "Google");
-        setPropValue("MODEL", "Pixel 7a");
-        setPropValue("FINGERPRINT", "google/lynx_beta/lynx:15/BP11.241121.010/12780007:user/release-keys");
+        setPropValue("MODEL", "Pixel 9");
+        setPropValue("FINGERPRINT", "google/tokay_beta/tokay:16/BP22.250325.007/13352765:user/release-keys");
         setPropValue("BRAND", "google");
-        setPropValue("PRODUCT", "lynx_beta");
-        setPropValue("DEVICE", "lynx");
-        setPropValue("VERSION.RELEASE", "15");
-        setPropValue("ID", "BP11.241121.010");
-        setPropValue("VERSION.INCREMENTAL", "12780007");
+        setPropValue("PRODUCT", "tokay_beta");
+        setPropValue("DEVICE", "tokay");
+        setPropValue("VERSION.RELEASE", "16");
+        setPropValue("ID", "BP22.250325.007");
+        setPropValue("VERSION.INCREMENTAL", "13352765");
         setPropValue("TYPE", "user");
         setPropValue("TAGS", "release-keys");
-        setPropValue("VERSION.SECURITY_PATCH", "2024-12-05");
+        setPropValue("VERSION.SECURITY_PATCH", "2025-04-05");
         setPropValue("VERSION.DEVICE_INITIAL_SDK_INT", "21");
 }
     private static boolean isCallerSafetyNet() {
