@@ -7840,6 +7840,7 @@ public class WindowManagerService extends IWindowManager.Stub
     @Override
     public void takeAlternativeScreenshot() {
         mPolicy.takeAlternativeScreenshot();
+    }
 
     private boolean hasFlags(int flags, int mask) {
         return (flags & mask) != 0;
