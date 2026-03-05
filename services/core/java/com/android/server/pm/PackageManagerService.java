@@ -13524,11 +13524,9 @@ public class PackageManagerService extends IPackageManager.Stub
                 if (filterAppAccessLPr(pkgSetting, callingUid, userId)) {
                     return false;
                 }
-                // Don't allow hiding "android" or SysUI as it makes device unusable.
-                if ("android".equals(packageName)
-                        || LocalServices.getService(PackageManagerInternal.class)
-                                .getSystemUiServiceComponent().getPackageName().equals(packageName)) {
-                    Slog.w(TAG, "Cannot hide package: " + packageName);
+                // Do not allow "android" is being disabled
+                if ("android".equals(packageName)) {
+                    Slog.w(TAG, "Cannot hide package: android");
                     return false;
                 }
                 // Cannot hide static shared libs as they are considered
