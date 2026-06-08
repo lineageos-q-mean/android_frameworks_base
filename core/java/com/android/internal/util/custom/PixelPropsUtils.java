@@ -78,7 +78,10 @@ public final class PixelPropsUtils {
             "com.google.android.wallpaper.effects",
             "com.google.pixel.livewallpaper",
             "com.netflix.mediaclient",
-            "com.nhs.online.nhsonline"
+            "com.nhs.online.nhsonline",
+            "com.twitter.android",
+            "com.twitter.android.lite",
+            "com.x.android.lite"
     };
 
     // Packages to Spoof as ROG Phone 6
@@ -168,8 +171,8 @@ public final class PixelPropsUtils {
         propsToChangePixel9ProXL.put("PRODUCT", "komodo");
         propsToChangePixel9ProXL.put("HARDWARE", "komodo");
         propsToChangePixel9ProXL.put("MODEL", "Pixel 9 Pro XL");
-        propsToChangePixel9ProXL.put("ID", "BP1A.250505.005");
-        propsToChangePixel9ProXL.put("FINGERPRINT", "google/komodo/komodo:15/BP1A.250505.005/13277524:user/release-keys");
+        propsToChangePixel9ProXL.put("ID", "BP4A.260205.002");
+        propsToChangePixel9ProXL.put("FINGERPRINT", "google/komodo/komodo:16/BP4A.260205.002/14624737:user/release-keys");
         propsToChangePixelTablet = new HashMap<>();
         propsToChangePixelTablet.put("BRAND", "google");
         propsToChangePixelTablet.put("MANUFACTURER", "Google");
@@ -177,8 +180,8 @@ public final class PixelPropsUtils {
         propsToChangePixelTablet.put("PRODUCT", "tangorpro");
         propsToChangePixelTablet.put("HARDWARE", "tangorpro");
         propsToChangePixelTablet.put("MODEL", "Pixel Tablet");
-        propsToChangePixelTablet.put("ID", "BP1A.250505.005");
-        propsToChangePixelTablet.put("FINGERPRINT", "google/tangorpro/tangorpro:15/BP1A.250505.005/13277524:user/release-keys");
+        propsToChangePixelTablet.put("ID", "BP4A.260205.001");
+        propsToChangePixelTablet.put("FINGERPRINT", "google/tangorpro/tangorpro:16/BP4A.260205.001/14624666:user/release-keys");
         propsToChangePixelXL = new HashMap<>();
         propsToChangePixelXL.put("BRAND", "google");
         propsToChangePixelXL.put("MANUFACTURER", "Google");
