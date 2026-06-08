@@ -213,7 +213,7 @@ public class DeviceInfoUtils {
             try {
                 SimpleDateFormat template = new SimpleDateFormat("yyyy-MM-dd");
                 Date patchDate = template.parse(customPatch);
-                String format = DateFormat.getBestDateTimePattern(Locale.getDefault(), "dMMMMyyyy");
+                String format = DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMMyyyy");
                 customPatch = DateFormat.format(format, patchDate).toString();
             } catch (ParseException e) {
                 // broken parse; fall through and use the raw string
