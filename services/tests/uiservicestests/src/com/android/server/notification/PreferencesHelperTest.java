@@ -21,7 +21,6 @@ import static android.app.NotificationManager.IMPORTANCE_LOW;
 import static android.app.NotificationManager.IMPORTANCE_MAX;
 import static android.app.NotificationManager.IMPORTANCE_NONE;
 import static android.app.NotificationManager.IMPORTANCE_UNSPECIFIED;
-import static android.app.NotificationManager.VISIBILITY_NO_OVERRIDE;
 import static android.content.ContentResolver.SCHEME_ANDROID_RESOURCE;
 import static android.content.ContentResolver.SCHEME_CONTENT;
 import static android.content.ContentResolver.SCHEME_FILE;
@@ -35,7 +34,6 @@ import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Matchers.anyInt;
@@ -83,6 +81,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.internal.util.FastXmlSerializer;
 import com.android.server.UiServiceTestCase;
+import com.android.server.uri.UriGrantsManagerInternal;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -461,8 +460,7 @@ public class PreferencesHelperTest extends UiServiceTestCase {
         assertTrue(foundChannel2Group);
     }
 
-    @Test
-    public void testBackupXml_backupCanonicalizedSoundUri() throws Exception {
+    @Test    public void testBackupXml_backupCanonicalizedSoundUri() throws Exception {
         NotificationChannel channel =
                 new NotificationChannel("id", "name", IMPORTANCE_LOW);
         channel.setSound(SOUND_URI, mAudioAttributes);
@@ -525,7 +523,6 @@ public class PreferencesHelperTest extends UiServiceTestCase {
                 PKG_N_MR1, UID_N_MR1, channel.getId(), false);
         assertEquals(Settings.System.DEFAULT_NOTIFICATION_URI, actualChannel.getSound());
     }
-
 
     /**
      * Although we don't make backups with uncanonicalized uris anymore, we used to, so we have to
@@ -1511,7 +1508,20 @@ public class PreferencesHelperTest extends UiServiceTestCase {
     }
 
     @Test
-    public void testCreateChannel_noSoundUriPermission_contentSchemeVerified() {
+    public void testCreateChannel_hasSoundUriPermission_useCustomSound() {
+        final Uri sound = Uri.parse(SCHEME_CONTENT + "://media/test/sound/uri");
+
+        final NotificationChannel channel = new NotificationChannel("id2", "name2",
+                NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setSound(sound, mAudioAttributes);
+        mHelper.createNotificationChannel(PKG_N_MR1, UID_N_MR1, channel, true, false);
+        assertThat(mHelper.getNotificationChannel(PKG_N_MR1, UID_N_MR1, channel.getId(), true)
+                .getSound()).isEqualTo(sound);
+    }
+
+
+    @Test
+    public void testCreateChannel_noSoundUriPermission_replaceWithDefaultSound() {
         final Uri sound = Uri.parse(SCHEME_CONTENT + "://media/test/sound/uri");
 
         doThrow(new SecurityException("no access")).when(mUgmInternal)
@@ -1521,12 +1531,11 @@ public class PreferencesHelperTest extends UiServiceTestCase {
         final NotificationChannel channel = new NotificationChannel("id2", "name2",
                 NotificationManager.IMPORTANCE_DEFAULT);
         channel.setSound(sound, mAudioAttributes);
-
-        assertThrows(SecurityException.class,
-                () -> mHelper.createNotificationChannel(PKG_N_MR1, UID_N_MR1, channel,
-                    true, false));
+        mHelper.createNotificationChannel(PKG_N_MR1, UID_N_MR1, channel, true, false);
         assertThat(mHelper.getNotificationChannel(PKG_N_MR1, UID_N_MR1, channel.getId(), true))
-                .isNull();
+                .isNotNull();
+        assertThat(mHelper.getNotificationChannel(PKG_N_MR1, UID_N_MR1, channel.getId(), true)
+                .getSound()).isEqualTo(Settings.System.DEFAULT_NOTIFICATION_URI);
     }
 
     @Test

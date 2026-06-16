@@ -305,7 +305,7 @@ public class CustomTile extends QSTileImpl<State> implements TileChangeListener 
             tileState = Tile.STATE_UNAVAILABLE;
         }
         state.state = tileState;
-        Drawable drawable;
+        Drawable drawable = null;
         try {
             drawable = mTile.getIcon().loadDrawable(mContext);
         } catch (Exception e) {
@@ -314,7 +314,14 @@ public class CustomTile extends QSTileImpl<State> implements TileChangeListener 
             drawable = (mDefaultIcon != null) ? mDefaultIcon.loadDrawable(mContext) : null;
         }
 
-        final Drawable drawableF = drawable;
+        final Drawable drawableF;
+        if (drawable != null) {
+            drawableF = drawable;
+        } else if (mDefaultIcon != null) {
+            drawableF = mDefaultIcon.loadDrawable(mContext);
+        } else {
+            drawableF = null;
+        }
         state.iconSupplier = () -> {
             Drawable.ConstantState cs = drawableF.getConstantState();
             if (cs != null) {
